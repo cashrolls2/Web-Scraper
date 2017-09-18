@@ -1,0 +1,106 @@
+﻿@using WebScraper.Mvc.Helpers
+
+@model WebScraper.Mvc.Models.WebContent
+@{
+    ViewBag.Title = "Home";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Web Scraper</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="jumbotron">
+            <div class="page-header">
+                <h1>Web Scraper</h1>
+            </div>
+
+        </div>
+        <div  class="col-lg-6 search-control">
+            <label style="">Enter a URL:</label>
+            @using (Html.BeginForm("Search", "Home"))
+            {
+                @Html.TextBoxFor(model => model.Url, new { id = "url", type = "url", required = "required" })
+                
+                <input type="submit" value="Search" class="btn btn-default  btn-md" />
+            }
+
+            <div class="clearfix"></div>
+            <br />
+
+            @{
+
+                var imageCnt = 0;
+            }
+            @if (Model != null && Model.Images != null && Model.Images.Count > 0)
+            {
+                @Html.Partial("~/Views/Shared/_ImageSlider.cshtml", Model);
+            }
+            else if (Model != null && (Model.Images == null || Model.Images.Count == 0))
+            {
+                <div><span style="color:red;">No images with extensions @string.Join(", ", @ConfigHelper.ImageExtensions) were found on the site</span></div>
+            }
+            
+            @*@if (Model != null && Model.Images != null) { 
+           foreach (var image in Model.Images)
+            {
+                <span>@image</span>
+            }
+            }*@
+
+        </div>
+        <div class="col-lg-2">
+
+
+            @if (Model != null && Model.TopWords != null && Model.TopWords.Any())
+            {
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="success">
+                            <th>Website's word count:</th>
+                            <th>@Model.AllWords.Length</th>
+                        </tr>
+                    </thead>
+                </table>
+
+                <br /><br />
+                
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Top 10 Words</th>
+                            <th>Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (KeyValuePair<string, int> word in Model.TopWords)
+                        {
+                            <tr id="tr_id_1" class="info">
+                                <td>@word.Key</td>
+                                <td>@word.Value</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</body>
+
+</html>
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+<link href="~/Content/site.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.flexslider.js"></script>
+
+<script src="~/Scripts/site.js"></script>

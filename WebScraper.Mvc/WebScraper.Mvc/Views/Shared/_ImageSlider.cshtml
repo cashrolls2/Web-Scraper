@@ -1,0 +1,49 @@
+﻿@using WebScraper.Mvc.Helpers
+
+@model WebScraper.Mvc.Models.WebContent
+@{
+    ViewBag.Title = "Image Slider";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Web Scraper</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="">
+
+        <!-- Place somewhere in the <body> of your page -->
+        <div id="slider" class="flexslider">
+            <ul class="slides">
+                @foreach (var image in Model.Images)
+                                        {
+                    <li>
+                        <img src="@image" class="main-slide" />
+                    </li>
+                }
+                <!-- items mirrored twice, total of 12 -->
+            </ul>
+        </div>
+        <div id="carousel" class="flexslider">
+            <ul class="slides">
+                @foreach (var image in Model.Images)
+                {
+                    <li>
+                        <img src="@image" class="thumbnail" />
+                    </li>
+                }
+                <!-- items mirrored twice, total of 12 -->
+            </ul>
+        </div>
+
+    </div>
+</body>
+
+</html>
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/jquery-ui.theme.min.css" rel="stylesheet" />
+<link href="~/Content/flexslider.css" rel="stylesheet" />
+

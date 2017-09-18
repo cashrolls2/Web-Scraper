@@ -1,0 +1,39 @@
+﻿
+.page-header h1{
+    color: #f14e32;
+    font-size: 100px;
+    font-weight: 700;
+    letter-spacing: -3px;
+    line-height: 100%;
+    margin: 30px 0 0;
+    text-align: center;
+}
+
+.search-control #url{
+    height: 35px;
+    margin: 0 20px;
+    padding: 0 10px;
+    width: 400px;
+}
+
+
+.search-control label{
+    float:left;
+    padding:5px 10px; 
+    font-size:16px;
+}
+
+.thumbnail{
+    height:85px;
+    background-color: #cccccc;
+}
+
+.main-slide {
+    max-height: 500px;
+    
+}
+
+#slider li{
+    background-color: #cccccc;
+}
+
